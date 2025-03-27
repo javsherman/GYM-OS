@@ -1,9 +1,9 @@
-import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import javax.swing.*;
 
-class MembershipUI {
+class MembershipUI extends JFrame {
     private JButton manageMembershipOptions;
     private JButton membershipDetails;
     private MembershipController membershipController;
@@ -11,25 +11,29 @@ class MembershipUI {
     public MembershipUI(MembershipController controller) {
         this.membershipController = controller;
         
-        JFrame frame = new JFrame("Membership UI");
-        frame.setSize(300, 200);
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        // Panels
+        JPanel titlePanel = new JPanel();
+        JPanel buttonPanel = new JPanel();
         
-        JPanel panel = new JPanel();
-        panel.setLayout(new GridLayout(2, 1, 10, 10)); // Added spacing between buttons
+        // Title Label
+        JLabel titleLabel = new JLabel("Manage Members", SwingConstants.LEFT);
+        titleLabel.setFont(new Font("Arial", Font.BOLD, 20)); // Bigger title
+        titlePanel.add(titleLabel);
         
+        // Buttons
         manageMembershipOptions = new JButton("Manage Membership");
-        manageMembershipOptions.setPreferredSize(new Dimension(295, 25));
+        manageMembershipOptions.setPreferredSize(new Dimension(250, 20));
         manageMembershipOptions.setBackground(Color.BLUE);
         manageMembershipOptions.setForeground(Color.WHITE);
         manageMembershipOptions.setFocusable(false);
         
         membershipDetails = new JButton("View Membership Details");
-        membershipDetails.setPreferredSize(new Dimension(295, 25));
+        membershipDetails.setPreferredSize(new Dimension(250, 20    ));
         membershipDetails.setBackground(Color.BLUE);
         membershipDetails.setForeground(Color.WHITE);
         membershipDetails.setFocusable(false);
         
+        // Action Listeners
         manageMembershipOptions.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -44,15 +48,32 @@ class MembershipUI {
             }
         });
         
-        panel.add(manageMembershipOptions);
-        panel.add(membershipDetails);
+        // Add buttons to panel
+        buttonPanel.add(manageMembershipOptions);
+        buttonPanel.add(membershipDetails);
         
-        frame.add(panel);
-        frame.setVisible(true);
+        // Adjust Panel Positioning
+        titlePanel.setBounds(15, 10, 290, 40);
+        buttonPanel.setBounds(15, 60, 300, 80);
+        
+        buttonPanel.setLayout(new GridLayout(2, 1, 10, 10));
+        
+        // Add components to frame
+        add(titlePanel);
+        add(buttonPanel);
+        
+        // Frame settings
+        setLayout(null);
+        setTitle("Membership Management");
+        setSize(350, 200);
+        setLocationRelativeTo(null);
+        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        setVisible(true);
     }
     
     public void displayManageMembershipOptions() {
-        JOptionPane.showMessageDialog(null, "Manage membership options coming soon...");
+        MembershipActionsUI membershipActionsUI = new MembershipActionsUI();
+        membershipActionsUI.displayMembershipActions();
     }
     
     public void displayMembershipDetails() {

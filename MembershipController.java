@@ -25,6 +25,7 @@ class MembershipController {
 
     public void updateUserData(String newName, String newEmail, String newPassword) {
         this.memberData = new Member(newName, newEmail, newPassword);
+        
     }
 
     public void storeChangesToDatabase() {
