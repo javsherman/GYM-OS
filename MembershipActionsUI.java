@@ -25,7 +25,7 @@ public class MembershipActionsUI extends JFrame {
 
         // Panel positioning
         titlePanel.setBounds(15, 10, 290, 40);
-        buttonPanel.setBounds(20, 50, 290, 180);
+        buttonPanel.setBounds(20, 50, 290, 100);
 
         // Add components to frame
         add(titlePanel);
@@ -34,19 +34,20 @@ public class MembershipActionsUI extends JFrame {
         // Frame configuration
         setLayout(null);
         setTitle("Membership Management");
-        setSize(350, 270);
-        setLocationRelativeTo(null);
+        setSize(350, 200);
+        setLocation(700, 270);
+        //setLocationRelativeTo(null);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setVisible(true);
     }
 
     private JButton createStyledButton(String text) {
         JButton button = new JButton(text);
-        button.setPreferredSize(new Dimension(295, 25));
+        button.setPreferredSize(new Dimension(295, 10));
         button.setBackground(Color.BLUE);
         button.setForeground(Color.WHITE);
         button.setFocusable(false);
-        button.setFont(new Font("Arial", Font.PLAIN, 14));
+        button.setFont(new Font("Arial", Font.BOLD, 14));
         
         // Add your action listeners here
         button.addActionListener(e -> {
