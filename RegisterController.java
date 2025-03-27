@@ -2,7 +2,7 @@
 import javax.swing.JOptionPane;
 
 public class RegisterController {
-    private MemberFormVerification verifier = new MemberFormVerification();
+    private Verifier verifier = new Verifier();
     private DatabaseController dbController = new DatabaseController();
     
     public boolean createMemberRecord(String name, String email, String password) {

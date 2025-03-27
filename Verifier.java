@@ -1,6 +1,6 @@
 import java.util.regex.Pattern;
 
-class MemberFormVerification {
+class Verifier {
     private static final Pattern EMAIL_PATTERN = Pattern.compile("^[A-Za-z0-9+_.-]+@[A-Za-z0-9.-]+$");
     
     public boolean verifyMemberDetails(String name, String email) {
