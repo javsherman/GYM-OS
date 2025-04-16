@@ -1,4 +1,5 @@
 import java.awt.*;
+import java.awt.event.*;
 import javax.swing.*;
 
 public class MembershipActionsUI extends JFrame {
@@ -13,19 +14,62 @@ public class MembershipActionsUI extends JFrame {
         titlePanel.add(titleLabel);
 
         // Button configuration
-        buttonPanel.setLayout(new GridLayout(3, 1, 0, 10)); // 3 rows, 1 column, 10px vertical gap
+        buttonPanel.setLayout(new GridLayout(5, 1, 0, 10)); // 3 rows, 1 column, 10px vertical gap
 
         JButton renewalButton = createStyledButton("Renewal");
         JButton upgradeButton = createStyledButton("Upgrade");
-        JButton cancellationButton = createStyledButton("Cancellation");
+        JButton cancellationButton = createStyledButton("Cancel");
+        JButton bookSessionButton = createStyledButton("Book Session");
+        JButton giveFeedbackButton = createStyledButton("Give FeedBack");
+        
+
+        // Button action listeners
+
+        renewalButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                RenewMembershipUI renewMembershipUI = new RenewMembershipUI();
+            }
+        });
+
+        upgradeButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                UpgradeMembershipUI upgradeMembershipUI = new UpgradeMembershipUI();
+            }
+        });
+
+        cancellationButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                CancelMembershipUI cancelMembershipUI = new CancelMembershipUI();
+            }
+        });
+
+        bookSessionButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                BookSessionUI bookSessionUI = new BookSessionUI();
+            }
+        });
+
+        giveFeedbackButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                FeedbackUI feedbackUI = new FeedbackUI();
+            }
+        });
+
 
         buttonPanel.add(renewalButton);
         buttonPanel.add(upgradeButton);
         buttonPanel.add(cancellationButton);
+        buttonPanel.add(bookSessionButton);
+        buttonPanel.add(giveFeedbackButton);
 
         // Panel positioning
         titlePanel.setBounds(15, 10, 290, 40);
-        buttonPanel.setBounds(20, 50, 290, 100);
+        buttonPanel.setBounds(20, 50, 290, 200);
 
         // Add components to frame
         add(titlePanel);
@@ -34,12 +78,13 @@ public class MembershipActionsUI extends JFrame {
         // Frame configuration
         setLayout(null);
         setTitle("Membership Management");
-        setSize(350, 200);
+        setSize(350, 300);
         setLocation(700, 270);
         //setLocationRelativeTo(null);
-        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         setVisible(true);
     }
+    
 
     private JButton createStyledButton(String text) {
         JButton button = new JButton(text);
@@ -48,13 +93,6 @@ public class MembershipActionsUI extends JFrame {
         button.setForeground(Color.WHITE);
         button.setFocusable(false);
         button.setFont(new Font("Arial", Font.BOLD, 14));
-        
-        // Add your action listeners here
-        button.addActionListener(e -> {
-            // Handle button actions
-            System.out.println(text + " button clicked");
-        });
-        
         return button;
     }
 

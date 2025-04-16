@@ -20,4 +20,5 @@ class Member {
     public String getMemberPassword() {
         return memberPassword;
     }
+
 }

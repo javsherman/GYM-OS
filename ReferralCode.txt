@@ -1,0 +1,29 @@
+public class ReferralCode {
+    private String referralCode;
+    ReferralCodeGenerator codeGenerator = new ReferralCodeGenerator();
+
+    public ReferralCode() {
+        this.referralCode = codeGenerator.generate();
+    }
+
+    // Constructor with manual code input
+    public ReferralCode(String code) {
+        this.referralCode = code;
+    }
+
+    // Getter method
+    public String getReferralCode() {
+        return referralCode;
+    }
+
+    // Setter method
+    public void setReferralCode(String code) {
+        this.referralCode = code;
+    }
+
+    // Generate and update a new code using the generator
+    public void refreshReferralCode() {
+        this.referralCode = codeGenerator.generate();
+    }
+}
+

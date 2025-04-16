@@ -7,20 +7,30 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.*;
 
+/**
+ * RegisterUI class provides a graphical user interface for new user registration
+ * It extends JFrame to create a window for the registration form
+ */
 public class RegisterUI extends JFrame {
+    // Form input fields for collecting user data
     private JTextField memberNameField, memberEmailField;
     private JPasswordField memberPasswordField;
 
+    /**
+     * Creates and displays the registration form with all necessary components
+     */
     public void displayMembershipForm() {
+        // Create panels to organize UI components
         JPanel wordPanel = new JPanel();
         JPanel buttonPanel = new JPanel();
         JPanel titlePanel = new JPanel();
 
+        // Set font for options
         Font addOptFont = new Font("Arial", Font.HANGING_BASELINE, 12);
 
+        // Create and configure the title label
         JLabel titleLabel = new JLabel("Register",SwingConstants.LEFT);
         titleLabel.setFont(new Font("Arial", Font.BOLD, 20)); // Bigger title
-        
         titlePanel.add(titleLabel);
 
         // Creation of Username JLabel and its corresponding JTextfield text box
@@ -73,18 +83,29 @@ public class RegisterUI extends JFrame {
         setTitle("Create new Login");// Sets title of the frame
         setSize(350, 270);// Set the size of thee frame
         setLocationRelativeTo(null);// Removes the default positioning of the frame when opened
-        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);// Sets the Close opertion of the fram
+        setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);// Sets the Close opertion of the fram
         setVisible(true);// SShows the frame on screen
     }
 
+    /**
+     * Inner class that extends JTextField to add watermark functionality
+     * Displays hint text in gray when the field is empty
+     */
     private class WatermarkTextField extends JTextField {
         private String watermark;
 
+        /**
+         * Constructor for WatermarkTextField
+         * @param watermark The hint text to display when field is empty
+         */
         public WatermarkTextField(String watermark) {
             super(watermark);
             this.watermark = watermark;
             setForeground(Color.GRAY);
             addFocusListener(new java.awt.event.FocusAdapter() {
+                /**
+                 * When field gains focus, clear watermark if it's showing
+                 */
                 public void focusGained(java.awt.event.FocusEvent evt) {
                     if (getText().equals(watermark)) {
                         setText("");
@@ -92,6 +113,9 @@ public class RegisterUI extends JFrame {
                     }  
                 }
 
+                /**
+                 * When field loses focus, restore watermark if empty
+                 */
                 public void focusLost(java.awt.event.FocusEvent evt) {
                     if (getText().isEmpty()) {
                         setText(watermark);
@@ -103,15 +127,24 @@ public class RegisterUI extends JFrame {
     } 
 
 
-        
+    /**
+     * Inner class to handle registration button click events
+     * Implements ActionListener interface
+     */    
     private class RegisterActionListener implements ActionListener {
         
+        /**
+         * Called when the register button is clicked
+         * Gets form data and passes it to the RegisterController
+         * @param e The action event triggered by button click
+         */
         public void actionPerformed(ActionEvent e) {
             String password = new String(memberPasswordField.getPassword());
                 RegisterController controller = new RegisterController();
                 
                 
-                if(controller.createMemberRecord(memberNameField.getText(), memberEmailField.getText(), password)){
+                if(controller.createMemberRecord(memberNameField.getText().trim(), memberEmailField.getText().trim(), password)){
+                    // Reset form fields after successful registration
                     memberNameField.setText(new WatermarkTextField("Enter your name i.e John Brown").watermark);
                     memberNameField.setForeground(Color.GRAY);
 
@@ -124,6 +157,4 @@ public class RegisterUI extends JFrame {
         }
         
     }
-} 
-
-
+}
